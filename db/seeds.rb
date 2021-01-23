@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# 创建一个主用户
+$rand_name = ('a'..'z').to_a.sample(8).join
+User.create!(name: "jason",
+             email: "jason@railstutorial.org", password: "123456", password_confirmation: "123456",admin:true)
+
+# 生成一些其他用户
+99.times do |n|
+  #name = Faker::Name.name
+  rand_name = ('a'..'z').to_a.sample(8).join
+  email = "#{rand_name}example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name: rand_name, email: email, password: password, password_confirmation: password)
+end
